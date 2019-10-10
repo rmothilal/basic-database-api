@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  basic-database-api:
+  - apiVersion: v1
+    appVersion: 1.0.0
+    created: 2019-10-10T19:30:30.480160848+02:00
+    description: Basic Database API Helm Chart for Mojaloop
+    digest: 766eb0a1963c5b3a882167a33be7132ff9f59c939950e63c648d83dcb10cae6c
+    name: basic-database-api
+    urls:
+    - https://rmothilal.github.io/basic-database-api/helm/repo/basic-database-api-1.0.0.tgz
+    version: 1.0.0
+generated: 2019-10-10T19:30:30.478922958+02:00
