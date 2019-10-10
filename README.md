@@ -2,7 +2,7 @@
 
 ## Install from remote repo
 
-### Configure remote Helm repo on your Helm Client
+#### Configure remote Helm repo on your Helm Client
 ```
 1. Add repo 
 
@@ -12,7 +12,7 @@
 
 `helm repo up rmothilal`
 ```
-### Deployment from remote repo
+#### Deployment from remote repo
 ```
 1. Deploy specific chart
 
@@ -21,7 +21,7 @@
 
 ## Install from local
 
-### How to install manually from git repo:
+#### How to install manually from git repo:
 
 ```$xslt
 run:
@@ -34,7 +34,7 @@ next:
  kubectl -n testdb port-forward service/{{RELEASE_NAME}}-basic-database-api 8080:80
 ```
 
-## How to use
+## How to use REST endpoints
 
 ```$xslt
 curl -X GET http://localhost:8080/users 
