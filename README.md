@@ -14,9 +14,9 @@
 ```
 #### Deployment from remote repo
 ```
-1. Deploy specific chart
+1. Deploy chart
 
-- `helm install --debug --namespace=<namespace> --name=<release-name> --repo=https://rmothilal.github.io/basic-database-api/helm/repo basic-database-api`
+- `helm install --debug --namespace={{NAME_SPACE}} --name={{RELEASE_NAME}} --repo=https://rmothilal.github.io/basic-database-api/helm/repo basic-database-api`
 ```
 
 ## Install from local
@@ -28,15 +28,14 @@ run:
 helm dep update ./helm/basic-database-api/
 
 next:
-helm install --namespace {namespace} ./helm/basic-database-api/
-
-next:
- kubectl -n testdb port-forward service/{{RELEASE_NAME}}-basic-database-api 8080:80
+helm install --namespace {{NAME_SPACE}} ./helm/basic-database-api/
 ```
 
 ## How to use REST endpoints
 
 ```$xslt
+kubectl -n {{NAME_SPACE}} port-forward service/{{RELEASE_NAME}}-basic-database-api 8080:80
+
 curl -X GET http://localhost:8080/users 
 
 curl -X POST http://localhost:8080/add/{{userName}}
