@@ -3,20 +3,22 @@
 ## Install from remote repo
 
 #### Configure remote Helm repo on your Helm Client
+
 ```
 1. Add repo 
 
-`helm repo add rmothilal https://rmothilal.github.io/basic-database-api/helm/repo`
+helm repo add rmothilal https://rmothilal.github.io/basic-database-api/helm/repo
 
 2. Keep your local repo up to date
 
-`helm repo up rmothilal`
+helm repo up rmothilal
 ```
+
 #### Deployment from remote repo
 ```
 1. Deploy chart
 
-- `helm install --debug --namespace={{NAME_SPACE}} --name={{RELEASE_NAME}} --repo=https://rmothilal.github.io/basic-database-api/helm/repo basic-database-api`
+helm install --debug --namespace={{NAME_SPACE}} --name={{RELEASE_NAME}} --repo=https://rmothilal.github.io/basic-database-api/helm/repo basic-database-api
 ```
 
 ## Install from local
