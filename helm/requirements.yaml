@@ -1,0 +1,7 @@
+# requirements.yaml
+dependencies:
+- name: percona-xtradb-cluster
+  version: 1.0.1
+  repository: https://kubernetes-charts.storage.googleapis.com
+  alias: mysql
+  condition: mysql.enabled
