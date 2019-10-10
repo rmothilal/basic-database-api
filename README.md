@@ -1,5 +1,7 @@
-#basic-database-api
-##Install from remote repo
+# basic-database-api
+
+## Install from remote repo
+
 ### Configure remote Helm repo on your Helm Client
 ```
 1. Add repo 
@@ -16,8 +18,10 @@
 
 - `helm install --debug --namespace=<namespace> --name=<release-name> --repo=https://rmothilal.github.io/basic-database-api/helm/repo basic-database-api`
 ```
-##Install from local
-###How to install manually from git repo:
+
+## Install from local
+
+### How to install manually from git repo:
 
 ```$xslt
 run:
@@ -30,7 +34,7 @@ next:
  kubectl -n testdb port-forward service/{{RELEASE_NAME}}-basic-database-api 8080:80
 ```
 
-###How to use
+## How to use
 
 ```$xslt
 curl -X GET http://localhost:8080/users 
@@ -38,7 +42,7 @@ curl -X GET http://localhost:8080/users
 curl -X POST http://localhost:8080/add/{{userName}}
 ```
 
-###Publish helm repo
+## Publish helm repo
 ```$xslt
 run:
 helm package -u -d ./helm/repo ./helm/basic-database-api/
