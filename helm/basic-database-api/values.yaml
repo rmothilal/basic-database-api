@@ -25,14 +25,14 @@ image:
   pullPolicy: Always
 
 readinessProbe:
-  enabled: true
+  enabled: false
   httpGet:
     path: /users
-  initialDelaySeconds: 60
+  initialDelaySeconds: 10
   periodSeconds: 15
 
 livenessProbe:
-  enabled: false
+  enabled: true
   httpGet:
     path: /users
   initialDelaySeconds: 60
@@ -52,7 +52,7 @@ config:
   db_connection_pool_min: 10
   db_connection_pool_max: 30
   simple_routing_mode_enabled: true
-  log_level: 'info'
+  log_level: 'debug'
 
 init:
   enabled: true
