@@ -1,6 +1,6 @@
 {
   "name": "basic-database-api",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
   "main": "src/route/index.js",
   "config": {
@@ -21,11 +21,24 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
     "@hapi/vision": "^5.5.4",
-    "@mojaloop/central-services-database": "^8.2.1",
+    "@mojaloop/central-services-database": "8.2.1",
+    "@mojaloop/central-services-logger": "8.1.2",
     "blipp": "^4.0.1",
     "glob": "^7.1.4",
     "hapi-swagger": "^10.1.2",
+    "moment": "^2.24.0",
     "npm-run-all": "4.1.5",
-    "rc": "^1.2.8"
+    "rc": "^1.2.8",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-promise": "^2.0.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
