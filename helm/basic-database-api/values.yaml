@@ -21,7 +21,7 @@ global:
 replicaCount: 1
 image:
   repository: mdebarros/basic-database-api
-  tag: v1.0.3
+  tag: v1.0.6
   pullPolicy: Always
 
 readinessProbe:
@@ -53,6 +53,9 @@ config:
   db_connection_pool_max: 30
   simple_routing_mode_enabled: true
   log_level: 'debug'
+  knex_debug:
+    enabled: true
+    debug: knex:*
 
 init:
   enabled: true

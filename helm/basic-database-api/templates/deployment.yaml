@@ -91,6 +91,10 @@ spec:
           env:
             - name: LOG_LEVEL
               value: {{ .Values.config.log_level }}
+            {{- if .Values.config.knex_debug.enabled }}
+            - name: DEBUG
+              value: {{ .Values.config.knex.debug }}
+            {{- end }}
           volumeMounts:
           - name: {{ template "basic-database-api.fullname" . }}-config-volume
             mountPath: /opt/basic-database-api/config

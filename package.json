@@ -1,6 +1,6 @@
 {
   "name": "basic-database-api",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "",
   "main": "src/route/index.js",
   "config": {
