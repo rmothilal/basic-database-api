@@ -40,10 +40,10 @@ const connectDatabase = async () => {
     let result = null
     try {
       result = await knex.select(1)
-      Logger.debug(`knex.client.pool.validate - select(1) = ${JSON.stringify(result)}`)
+      Logger.silly(`knex.client.pool.validate - select(1) = ${JSON.stringify(result)}`)
       return true
     } catch (err) {
-      Logger.debug(`knex.client.pool.validate - caught Error - ${err}`)
+      Logger.error(`knex.client.pool.validate - caught Error - ${err}`)
       // await Db.connect(Config.DATABASE)
       return false
     }
@@ -59,18 +59,33 @@ const connectDatabase = async () => {
     return false
   }
 
-  const validatePoolResource3 = async (connection) => {
+  const validatePoolResourceMysql2Dialect = (connection) => {
+    if (connection._fatalError) {
+      return false
+    }
+    return true
+  }
+
+  const validatePoolResourceMysqlDialectTest = async (connection) => {
     if (
       connection.state === 'connected' ||
       connection.state === 'authenticated'
     ) {
       let result = null
       try {
-        result = await knex.select(1)
-        Logger.debug(`knex.client.pool.validate - select(1) = ${JSON.stringify(result)}`)
+        // result = await connection.query('SELECT 1')
+        result = await connection.query('select 1', [], function (err, rows, fields) {
+          if (err) {
+            Promise.reject(err)
+          } else {
+            Promise.resolve(rows)
+          }
+        })
+        // Logger.silly(`knex.client.pool.validate - select(1) = ${JSON.stringify(result)}`)
+        Logger.silly(`knex.client.pool.validate - select(1) = ${JSON.stringify(result._results)}`)
         return true
       } catch (err) {
-        Logger.debug(`knex.client.pool.validate - caught Error - ${err}`)
+        Logger.error(`knex.client.pool.validate - caught Error - ${err}`)
         // await Db.connect(Config.DATABASE)
         return false
       }
@@ -78,10 +93,37 @@ const connectDatabase = async () => {
     return false
   }
 
+  const validatePoolResourceMysql2DialectTest = async (connection) => {
+    if (connection._fatalError) {
+      return false
+    }
+
+    let result
+    try {
+      // result = await connection.query('SELECT 1')
+      result = await connection.promise().query('select 1', [], function (err, rows, fields) {
+        if (err) {
+          Promise.reject(err)
+        } else {
+          Promise.resolve(rows)
+        }
+      })
+      // Logger.silly(`knex.client.pool.validate - select(1) = ${JSON.stringify(result)}`)
+      Logger.silly(`knex.client.pool.validate - select(1) = ${JSON.stringify(result._results)}`)
+      return true
+    } catch (err) {
+      Logger.error(`knex.client.pool.validate - caught Error - ${err}`)
+      // await Db.connect(Config.DATABASE)
+      return false
+    }
+  }
+
   // knex.client.pool.validate = validatePoolResourceDefault
   // knex.client.pool.validate = validatePoolResource
-  knex.client.pool.validate = validatePoolResourceMysqlDialect
-  // knex.client.pool.validate = validatePoolResource3
+  // knex.client.pool.validate = validatePoolResourceMysqlDialect
+  // knex.client.pool.validate = validatePoolResourceMysql2Dialect
+  knex.client.pool.validate = validatePoolResourceMysqlDialectTest
+  // knex.client.pool.validate = validatePoolResourceMysql2DialectTest
 }
 
 const createServer = (port, modules) => {
