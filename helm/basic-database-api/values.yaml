@@ -21,7 +21,7 @@ global:
 replicaCount: 1
 image:
   repository: mdebarros/basic-database-api
-  tag: v1.0.6
+  tag: v1.0.7
   pullPolicy: Always
 
 readinessProbe:
@@ -49,9 +49,30 @@ config:
   db_user: basic
   db_password: password
   db_database: user_database
+
+  ## default connection pool config
+#  db_connection_pool_min: 2
+#  db_connection_pool_max: 10
+#  db_acquire_timeout_millis: 30000
+#  db_create_timeout_millis: 30000
+#  db_destroy_timeout_millis: 5000
+#  db_idle_timeout_millis: 30000
+#  db_reap_interval_millis: 1000
+#  db_create_retry_interval_millis: 200
+#  db_debug: false
+
+  ## custom connection pool config
   db_connection_pool_min: 10
   db_connection_pool_max: 30
-  simple_routing_mode_enabled: true
+  db_acquire_timeout_millis: 30000
+  db_create_timeout_millis: 30000
+  db_destroy_timeout_millis: 5000
+  db_idle_timeout_millis: 30000
+  db_reap_interval_millis: 1000
+  db_create_retry_interval_millis: 200
+  db_debug: false
+
+  # Debug config
   log_level: 'debug'
   knex_debug:
     enabled: true

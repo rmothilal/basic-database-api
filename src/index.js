@@ -7,6 +7,7 @@ const Config = require('./lib/config')
 const Plugins = require('./plugins')
 const Logger = require('@mojaloop/central-services-logger')
 const uuidv4 = require('uuid/v4')
+const mysql = require('./lib/mysql')
 // const Moment = require('moment')
 
 const migrate = async (runMigrations) => {
@@ -265,7 +266,11 @@ const createServer = (port, modules) => {
 
 const initialize = async function ({ port, modules = [], runMigrations = false}) {
   await migrate(runMigrations)
-  await connectDatabase()
+  if (Config.DATABASE.client === 'mysql-native') {
+    await mysql.connect()
+  } else {
+    await connectDatabase()
+  }
   return createServer(port, modules)
 }
 

@@ -93,7 +93,7 @@ spec:
               value: {{ .Values.config.log_level }}
             {{- if .Values.config.knex_debug.enabled }}
             - name: DEBUG
-              value: {{ .Values.config.knex.debug }}
+              value: {{ .Values.config.knex_debug.debug }}
             {{- end }}
           volumeMounts:
           - name: {{ template "basic-database-api.fullname" . }}-config-volume

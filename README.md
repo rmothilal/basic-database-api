@@ -1,5 +1,14 @@
 # basic-database-api
 
+## MySQL Modes
+
+Modify the database DIALECT in the following config file: `./config/default.json` as per the following table:
+
+| Dialect | Description |
+| --- | --- |
+| mysql | uses knex |
+| mysql-native | uses mysqljs directly via a promise wrapper |
+
 ## Install from remote repo
 
 #### Configure remote Helm repo on your Helm Client

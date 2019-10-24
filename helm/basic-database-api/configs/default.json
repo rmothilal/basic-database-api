@@ -15,12 +15,12 @@
     "SCHEMA": "{{ .Values.config.db_database }}",
     "POOL_MIN_SIZE": {{ .Values.config.db_connection_pool_min }},
     "POOL_MAX_SIZE": {{ .Values.config.db_connection_pool_max }},
-    "ACQUIRE_TIMEOUT_MILLIS": 30000,
-    "CREATE_TIMEOUT_MILLIS": 30000,
-    "DESTROY_TIMEOUT_MILLIS": 5000,
-    "IDLE_TIMEOUT_MILLIS": 30000,
-    "REAP_INTERVAL_MILLIS": 1000,
-    "CREATE_RETRY_INTERVAL_MILLIS": 200,
-    "DEBUG": false
-  }
+    "ACQUIRE_TIMEOUT_MILLIS": {{ .Values.config.db_acquire_timeout_millis }},
+    "CREATE_TIMEOUT_MILLIS": {{ .Values.config.db_create_timeout_millis }},
+    "DESTROY_TIMEOUT_MILLIS": {{ .Values.config.db_destroy_timeout_millis }},
+    "IDLE_TIMEOUT_MILLIS": {{ .Values.config.db_idle_timeout_millis }},
+    "REAP_INTERVAL_MILLIS": {{ .Values.config.db_reap_interval_millis }},
+    "CREATE_RETRY_INTERVAL_MILLIS": {{ .Values.config.db_create_retry_interval_millis }},
+    "DEBUG": {{ .Values.config.db_debug }}
+}
 }
