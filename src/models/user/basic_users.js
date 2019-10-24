@@ -2,6 +2,7 @@
 
 const Logger = require('@mojaloop/central-services-logger')
 const Db = require('../../lib/db')
+const Config = require('../../lib/config')
 
 const addUser = async (userName) => {
   return Db.basic_users.insert({ userName })
@@ -9,6 +10,56 @@ const addUser = async (userName) => {
 
 const listUsers = async () => {
   return Db.basic_users.find({}, { order: 'userName asc' })
+}
+
+var promiseRetry = require('promise-retry')
+
+const addUserRetry = async (userName) => {
+  Logger.debug(`basic_users::addUserRetry - userName: ${userName}`)
+  let result
+  try {
+    result = await promiseRetry(config.DATABASE.retry, async (retry, number) => {
+      Logger.debug(`basic_users::listUsersRetry - attempt number: ${number}`)
+
+      try {
+        return Db.basic_users.insert({ userName })
+      } catch (err) {
+        Logger.error(`promiseRetry - err.code: ${err.code}`)
+        if (err.code === 'ECONNRESET' || err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNREFUSED' || err.code === 'ER_SERVER_SHUTDOWN') {
+          retry(err)
+        }
+        throw err
+      }
+    })
+  } catch (err) {
+    Logger.error(err)
+    throw err
+  }
+  return result
+}
+
+const listUsersRetry = async () => {
+  Logger.debug(`basic_users::listUsersRetry`)
+  let result
+  try {
+    result = await promiseRetry(config.DATABASE.retry, async (retry, number) => {
+      Logger.debug(`basic_users::listUsersRetry - attempt number: ${number}`)
+
+      try {
+        return await Db.basic_users.find({}, { order: 'userName asc' })
+      } catch (err) {
+        Logger.error(`promiseRetry - err.code: ${err.code}`)
+        if (err.code === 'ECONNRESET' || err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNREFUSED' || err.code === 'ER_SERVER_SHUTDOWN') {
+          retry(err)
+        }
+        throw err
+      }
+    })
+  } catch (err) {
+    Logger.error(err)
+    throw err
+  }
+  return result
 }
 
 const MysqlPool = require('../../lib/mysql')
@@ -51,6 +102,11 @@ if (config.DATABASE.client === 'mysql-native') {
   module.exports = {
     addUser: addUserNative,
     listUsers: listUsersNative
+  }
+} else if (config.DATABASE.retry.enabled) {
+  module.exports = {
+    addUser: addUserRetry,
+    listUsers: listUsersRetry
   }
 } else {
   module.exports = {

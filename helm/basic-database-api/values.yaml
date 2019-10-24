@@ -21,7 +21,7 @@ global:
 replicaCount: 1
 image:
   repository: mdebarros/basic-database-api
-  tag: v1.0.10
+  tag: v1.0.13
   pullPolicy: Always
 
 readinessProbe:
@@ -69,6 +69,15 @@ config:
   db_reap_interval_millis: 1000
   db_create_retry_interval_millis: 200
   db_debug: false
+
+  db_retry: {
+    enabled: true,
+    retries: 10,
+    factor: 2,
+    minTimeout: 1000,
+    maxTimeout: "Infinity",
+    randomize: false,
+  }
 
   # Debug config
   log_level: 'debug'

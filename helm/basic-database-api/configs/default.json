@@ -21,6 +21,7 @@
     "IDLE_TIMEOUT_MILLIS": {{ .Values.config.db_idle_timeout_millis }},
     "REAP_INTERVAL_MILLIS": {{ .Values.config.db_reap_interval_millis }},
     "CREATE_RETRY_INTERVAL_MILLIS": {{ .Values.config.db_create_retry_interval_millis }},
-    "DEBUG": {{ .Values.config.db_debug }}
-}
+    "DEBUG": {{ .Values.config.db_debug }},
+    "RETRY": {{ .Values.config.db_retry | toJson}}
+  }
 }

@@ -20,6 +20,14 @@
     "IDLE_TIMEOUT_MILLIS": 30000,
     "REAP_INTERVAL_MILLIS": 1000,
     "CREATE_RETRY_INTERVAL_MILLIS": 200,
-    "DEBUG": false
+    "DEBUG": false,
+    "RETRY": {
+      "enabled": true,
+      "retries": 10,
+      "factor": 2,
+      "minTimeout": 1000,
+      "maxTimeout": "Infinity",
+      "randomize": false
+    }
   }
 }
