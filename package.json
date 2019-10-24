@@ -1,12 +1,13 @@
 {
   "name": "basic-database-api",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "",
   "main": "src/route/index.js",
   "config": {
     "knex": "--knexfile ./config/knexfile.js"
   },
   "scripts": {
+    "preinstall": "npm install rm-local-modules && rm-local-modules -v",
     "start": "node src/route/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "run-s migrate:latest seed:run",
@@ -21,15 +22,17 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
     "@hapi/vision": "^5.5.4",
-    "@mojaloop/central-services-database": "file:./modules/central-services-database",
+    "@mojaloop/central-services-database": "file:modules/central-services-database",
     "@mojaloop/central-services-logger": "8.1.2",
     "blipp": "^4.0.1",
     "glob": "^7.1.4",
     "hapi-swagger": "^10.1.2",
+    "knex": "0.18.4",
     "moment": "^2.24.0",
     "npm-run-all": "4.1.5",
     "promise-mysql": "^4.1.1",
     "rc": "^1.2.8",
+    "rm-local-modules": "0.0.2",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

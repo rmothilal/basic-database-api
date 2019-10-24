@@ -1,6 +1,7 @@
 deploy/
 coverage/
 node_modules/
+**/node_modules/
 .dockerignore
 .editorconfig
 .git/

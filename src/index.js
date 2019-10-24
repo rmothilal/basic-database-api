@@ -154,102 +154,102 @@ const connectDatabase = async () => {
   // allow externally collect diagnostic data of pool behaviour.
   // If any of these hooks fail, all errors are catched and warnings are logged.
 
-  // resource is acquired from pool
-  pool.on('acquireRequest', eventId => {
-    const id = uuidv4()
-    const eventType = 'acquireRequest'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.acquireSuccess - eventId:${eventId}`)
-  })
-  pool.on('acquireSuccess', (eventId, resource) => {
-    const id = uuidv4()
-    const eventType = 'acquireSuccess'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.acquireSuccess - eventId:${eventId}, resource.state:${resource.state}`)
-  })
-  pool.on('acquireFail', (eventId, err) => {
-    const id = uuidv4()
-    const eventType = 'acquireFail'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.acquireFail - eventId:${eventId}, err:${err}`)
-  })
-
-  // resource returned to pool
-  pool.on('release', resource => {
-    const id = uuidv4()
-    const eventType = 'release'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.release - resource.state:${resource.state}`)
-  })
-
-  // resource was created and added to the pool
-  pool.on('createRequest', eventId => {
-    const id = uuidv4()
-    const eventType = 'createRequest'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.createRequest - eventId:${eventId}`)
-  })
-  pool.on('createSuccess', (eventId, resource) => {
-    const id = uuidv4()
-    const eventType = 'createSuccess'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.createSuccess - eventId:${eventId}, resource.state:${resource.state}`)
-  })
-  pool.on('createFail', (eventId, err) => {
-    const id = uuidv4()
-    const eventType = 'createFail'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.createFail - eventId:${eventId}, err:${err}`)
-  })
-
-  // resource is destroyed and evicted from pool
-  // resource may or may not be invalid when destroySuccess / destroyFail is called
-  pool.on('destroyRequest', (eventId, resource) => {
-    const id = uuidv4()
-    const eventType = 'destroyRequest'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.destroyRequest - eventId:${eventId}, resource.state:${resource.state}`)
-  })
-  pool.on('destroySuccess', (eventId, resource) => {
-    const id = uuidv4()
-    const eventType = 'destroySuccess'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.destroySuccess - eventId:${eventId}, resource.state:${resource.state}`)
-  })
-  pool.on('destroyFail', (eventId, resource, err) => {
-    const id = uuidv4()
-    const eventType = 'destroyFail'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.destroyFail - eventId:${eventId}, resource.state:${resource.state}, err:${err}`)
-  })
-
-  // when internal reaping event clock is activated / deactivated
-  pool.on('startReaping', () => {
-    const id = uuidv4()
-    const eventType = 'startReaping'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.startReaping - ...`)
-  })
-  pool.on('stopReaping', () => {
-    const id = uuidv4()
-    const eventType = 'stopReaping'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.stopReaping - ...`)
-  })
-
-  // pool is destroyed (after poolDestroySuccess all event handlers are also cleared)
-  pool.on('poolDestroyRequest', eventId => {
-    const id = uuidv4()
-    const eventType = 'poolDestroyRequest'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.poolDestroyRequest - eventId:${eventId}`)
-  })
-  pool.on('poolDestroySuccess', eventId => {
-    const id = uuidv4()
-    const eventType = 'poolDestroySuccess'
-    printKnexPoolInfo(id, eventType)
-    Logger.debug(`${id} - ${eventType} - knex.client.pool.on.poolDestroySuccess - eventId:${eventId}`)
-  })
+  // // resource is acquired from pool
+  // pool.on('acquireRequest', eventId => {
+  //   const id = uuidv4()
+  //   const eventType = 'acquireRequest'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.acquireSuccess - eventId:${eventId}`)
+  // })
+  // pool.on('acquireSuccess', (eventId, resource) => {
+  //   const id = uuidv4()
+  //   const eventType = 'acquireSuccess'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.acquireSuccess - eventId:${eventId}, resource.state:${resource.state}`)
+  // })
+  // pool.on('acquireFail', (eventId, err) => {
+  //   const id = uuidv4()
+  //   const eventType = 'acquireFail'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.acquireFail - eventId:${eventId}, err:${err}`)
+  // })
+  //
+  // // resource returned to pool
+  // pool.on('release', resource => {
+  //   const id = uuidv4()
+  //   const eventType = 'release'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.release - resource.state:${resource.state}`)
+  // })
+  //
+  // // resource was created and added to the pool
+  // pool.on('createRequest', eventId => {
+  //   const id = uuidv4()
+  //   const eventType = 'createRequest'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.createRequest - eventId:${eventId}`)
+  // })
+  // pool.on('createSuccess', (eventId, resource) => {
+  //   const id = uuidv4()
+  //   const eventType = 'createSuccess'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.createSuccess - eventId:${eventId}, resource.state:${resource.state}`)
+  // })
+  // pool.on('createFail', (eventId, err) => {
+  //   const id = uuidv4()
+  //   const eventType = 'createFail'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.createFail - eventId:${eventId}, err:${err}`)
+  // })
+  //
+  // // resource is destroyed and evicted from pool
+  // // resource may or may not be invalid when destroySuccess / destroyFail is called
+  // pool.on('destroyRequest', (eventId, resource) => {
+  //   const id = uuidv4()
+  //   const eventType = 'destroyRequest'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.destroyRequest - eventId:${eventId}, resource.state:${resource.state}`)
+  // })
+  // pool.on('destroySuccess', (eventId, resource) => {
+  //   const id = uuidv4()
+  //   const eventType = 'destroySuccess'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.destroySuccess - eventId:${eventId}, resource.state:${resource.state}`)
+  // })
+  // pool.on('destroyFail', (eventId, resource, err) => {
+  //   const id = uuidv4()
+  //   const eventType = 'destroyFail'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.destroyFail - eventId:${eventId}, resource.state:${resource.state}, err:${err}`)
+  // })
+  //
+  // // when internal reaping event clock is activated / deactivated
+  // pool.on('startReaping', () => {
+  //   const id = uuidv4()
+  //   const eventType = 'startReaping'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.startReaping - ...`)
+  // })
+  // pool.on('stopReaping', () => {
+  //   const id = uuidv4()
+  //   const eventType = 'stopReaping'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.stopReaping - ...`)
+  // })
+  //
+  // // pool is destroyed (after poolDestroySuccess all event handlers are also cleared)
+  // pool.on('poolDestroyRequest', eventId => {
+  //   const id = uuidv4()
+  //   const eventType = 'poolDestroyRequest'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.poolDestroyRequest - eventId:${eventId}`)
+  // })
+  // pool.on('poolDestroySuccess', eventId => {
+  //   const id = uuidv4()
+  //   const eventType = 'poolDestroySuccess'
+  //   printKnexPoolInfo(id, eventType)
+  //   Logger.debug(`${id} - ${eventType} - knex.client.pool.on.poolDestroySuccess - eventId:${eventId}`)
+  // })
 }
 
 const createServer = (port, modules) => {
