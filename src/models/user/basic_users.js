@@ -19,12 +19,12 @@ const addUserRetry = async (userName) => {
   let result
   try {
     result = await promiseRetry(config.DATABASE.retry, async (retry, number) => {
-      Logger.debug(`basic_users::listUsersRetry - attempt number: ${number}`)
+      Logger.debug(`basic_users::addUserRetry - attempt number: ${number}`)
 
       try {
         return Db.basic_users.insert({ userName })
       } catch (err) {
-        Logger.error(`promiseRetry - err.code: ${err.code}`)
+        Logger.error(`basic_users::addUserRetry::promiseRetry - err.code: ${err.code}`)
         if (err.code === 'ECONNRESET' || err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNREFUSED' || err.code === 'ER_SERVER_SHUTDOWN') {
           retry(err)
         }
@@ -48,7 +48,7 @@ const listUsersRetry = async () => {
       try {
         return await Db.basic_users.find({}, { order: 'userName asc' })
       } catch (err) {
-        Logger.error(`promiseRetry - err.code: ${err.code}`)
+        Logger.error(`basic_users::listUsersRetry::promiseRetry - err.code: ${err.code}`)
         if (err.code === 'ECONNRESET' || err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNREFUSED' || err.code === 'ER_SERVER_SHUTDOWN') {
           retry(err)
         }
