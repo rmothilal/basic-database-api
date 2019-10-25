@@ -6,6 +6,7 @@ let pool
 
 const connect = async () => {
   try {
+    // reference: https://github.com/mysqljs/mysql#pooling-connections
     pool = await mysql.createPool({
       connectionLimit: config.DATABASE.pool.max, // The maximum number of connections to create at once. (Default: 10)
       acquireTimeout: config.DATABASE.pool.ACQUIRE_TIMEOUT_MILLIS, // The milliseconds before a timeout occurs during the connection acquisition. This is slightly different from connectTimeout, because acquiring a pool connection does not always involve making a connection. If a connection request is queued, the time the request spends in the queue does not count towards this timeout. (Default: 10000)
