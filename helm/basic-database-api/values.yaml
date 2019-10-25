@@ -72,10 +72,10 @@ config:
 
   db_retry: {
     enabled: true,
-    retries: 10,
+    retries: 15,
     factor: 2,
-    minTimeout: 1000,
-    maxTimeout: "Infinity",
+    minTimeout: 100,
+    maxTimeout: 500,
     randomize: false,
   }
 
