@@ -18,6 +18,22 @@ const connect = async () => {
       password: config.DATABASE.connection.password,
       database: config.DATABASE.connection.database
     })
+
+    pool.on('acquire', function (connection) {
+      Logger.debug(`mysql.on.acquire - connection.threadId: ${connection.threadId}`)
+    })
+
+    pool.on('connection', function (connection) {
+      Logger.debug(`mysql.on.connection - connection.threadId: ${connection.threadId}`)
+    })
+
+    pool.on('enqueue', function () {
+      Logger.debug('Waiting for available connection slot')
+    })
+
+    pool.on('release', function (connection) {
+      Logger.debug(`mysql.on.release - connection.threadId: ${connection.threadId}`)
+    })
   } catch (err) {
     Logger.error(err)
     throw err
