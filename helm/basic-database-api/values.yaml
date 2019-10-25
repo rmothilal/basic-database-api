@@ -21,7 +21,7 @@ global:
 replicaCount: 1
 image:
   repository: mdebarros/basic-database-api
-  tag: v1.0.16
+  tag: v1.0.17
   pullPolicy: Always
 
 readinessProbe:
